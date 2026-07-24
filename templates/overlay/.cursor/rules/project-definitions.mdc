@@ -1,0 +1,42 @@
+---
+description: Definições e glossário do projeto Angular
+alwaysApply: true
+---
+
+# Definições do Projeto — __PROJECT_NAME__
+
+## Contexto
+
+Este projeto foi iniciado com `init-project-angular` e segue padrões acordados para desenvolvimento Angular com suporte a agentes Cursor.
+
+## Glossário
+
+| Termo | Definição |
+|-------|-----------|
+| **Feature** | Módulo funcional com rotas, componentes e serviços coesos (ex.: `users`, `auth`) |
+| **Smart component** | Componente container que orquestra estado e chama serviços |
+| **Dumb component** | Componente presentacional, recebe dados via `@Input()` e emite via `@Output()` |
+| **Core** | Singletons globais: interceptors, guards, serviços de autenticação |
+| **Shared** | Componentes, pipes e diretivas reutilizáveis sem lógica de negócio |
+
+## Convenções de nomenclatura
+
+- **Arquivos:** kebab-case (`user-list.component.ts`)
+- **Classes:** PascalCase (`UserListComponent`)
+- **Seletores:** prefixo do app + kebab-case (`app-user-list`)
+- **Rotas:** kebab-case, lazy-loaded por feature
+
+## Stack
+
+- Angular (standalone components)
+- Estilo: __STYLE_EXT__
+- Router: habilitado por padrão
+- Testes: Jasmine + Karma (padrão Angular CLI)
+
+## Regras para o agente
+
+1. Preferir **standalone components** e **signals** quando disponível.
+2. Serviços com `@Injectable({ providedIn: 'root' })` salvo exceção documentada.
+3. Não criar barrel files (`index.ts`) sem necessidade explícita.
+4. Manter componentes pequenos; extrair lógica para serviços ou composables.
+5. Consultar `docs/PATTERNS.md` antes de introduzir novos padrões.

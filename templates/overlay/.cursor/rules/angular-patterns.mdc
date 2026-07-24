@@ -1,0 +1,60 @@
+---
+description: Padrões de código Angular para este projeto
+globs: ["**/*.ts", "**/*.html", "**/*.scss", "**/*.css"]
+alwaysApply: false
+---
+
+# Padrões Angular — __PROJECT_NAME__
+
+## Estrutura de pastas
+
+```
+src/app/
+├── core/           # singletons, guards, interceptors
+├── shared/         # UI reutilizável
+├── features/       # módulos por domínio
+│   └── <feature>/
+│       ├── pages/
+│       ├── components/
+│       ├── services/
+│       └── <feature>.routes.ts
+└── app.config.ts
+```
+
+## Componentes
+
+```typescript
+@Component({
+  selector: 'app-example',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './example.component.html',
+  styleUrl: './example.component.__STYLE_EXT__',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ExampleComponent {
+  readonly data = input.required<ExampleDto>();
+  readonly selected = output<ExampleDto>();
+}
+```
+
+## Serviços HTTP
+
+- Um serviço por recurso REST (`UsersService`, `ProductsService`).
+- Retornar `Observable<T>`; componentes assinam ou usam `async` pipe.
+- Tratar erros no interceptor ou no serviço, nunca silenciar falhas.
+
+## Rotas
+
+- Lazy load por feature: `loadComponent` ou `loadChildren`.
+- Guards em `core/guards/`; resolvers apenas quando evitar flicker justificar.
+
+## Estilo
+
+- BEM ou utilitários consistentes; evitar estilos globais além de `styles.__STYLE_EXT__`.
+- Preferir `:host` e encapsulamento do componente.
+
+## Testes
+
+- Testar comportamento, não implementação.
+- Mockar serviços HTTP com `HttpTestingController`.
