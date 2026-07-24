@@ -45,7 +45,9 @@ export async function createAngularProject(
   if (await fs.pathExists(projectPath)) {
     const files = await fs.readdir(projectPath);
     if (files.length > 0) {
-      throw new Error(`A pasta "${options.directory}" já existe e não está vazia.`);
+      throw new Error(
+        `A pasta "${options.directory}" já existe e não está vazia.`,
+      );
     }
   }
 

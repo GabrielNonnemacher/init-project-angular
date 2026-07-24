@@ -44,7 +44,9 @@ program
       await printNextSteps(projectPath, options);
     } catch (error) {
       const message =
-        error instanceof Error ? error.message : "Erro desconhecido ao criar o projeto.";
+        error instanceof Error
+          ? error.message
+          : "Erro desconhecido ao criar o projeto.";
       console.error(chalk.red(`\nErro: ${message}\n`));
       process.exit(1);
     }
